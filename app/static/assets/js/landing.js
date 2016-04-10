@@ -39,10 +39,10 @@
 
 					// Images (in the format of 'url': 'alignment').
 						images: {
-							'images/landing/bg01.jpg': 'center',
-							'images/landing/bg02.jpg': 'center',
-							'images/landing/bg03.jpg': 'center',
-							'images/landing/bg04.jpg': 'center'
+							'static/images/landing/bg01.jpg': 'center',
+							'static/images/landing/bg02.jpg': 'center',
+							'static/images/landing/bg03.jpg': 'center',
+							'static/images/landing/bg04.jpg': 'center'
 						},
 
 					// Delay.
@@ -140,40 +140,40 @@
 
 			// Events.
 			// Note: If you're *not* using AJAX, get rid of this event listener.
-				$form.addEventListener('submit', function(event) {
+				// $form.addEventListener('submit', function(event) {
 
-					event.stopPropagation();
-					event.preventDefault();
-					//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					//This fucking code is just to make sure we are redirecting to the landing page, remember to remove it when Carlo fuckin pushes you to use Flask
-					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					location.href='LandingPage.html'
-					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				// 	event.stopPropagation();
+				// 	event.preventDefault();
+				// 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				// 	//This fucking code is just to make sure we are redirecting to the landing page, remember to remove it when Carlo fuckin pushes you to use Flask
+				// 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				// 	// location.href='LandingPage.html'
+				// 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-					// Hide message.
-						$message._hide();
+				// 	// Hide message.
+				// 		$message._hide();
 
-					// Disable submit.
-						$submit.disabled = true;
+				// 	// Disable submit.
+				// 		$submit.disabled = true;
 
-					// Process form.
-					// Note: Doesn't actually do anything yet (other than report back with a "thank you"),
-					// but there's enough here to piece together a working AJAX submission call that does.
-						window.setTimeout(function() {
+				// 	// Process form.
+				// 	// Note: Doesn't actually do anything yet (other than report back with a "thank you"),
+				// 	// but there's enough here to piece together a working AJAX submission call that does.
+				// 		window.setTimeout(function() {
 
-							// Reset form.
-								$form.reset();
+				// 			// Reset form.
+				// 				$form.reset();
 
-							// Enable submit.
-								$submit.disabled = false;
+				// 			// Enable submit.
+				// 				$submit.disabled = false;
 
-							// Show message.
-								$message._show('success', 'Thank you!');
-								//$message._show('failure', 'Something went wrong. Please try again.');
+				// 			// Show message.
+				// 				$message._show('success', 'Thank you!');
+				// 				//$message._show('failure', 'Something went wrong. Please try again.');
 
-						}, 750);
+				// 		}, 750);
 
-				});
+				// });
 
 		})();
 
