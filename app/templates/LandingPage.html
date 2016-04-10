@@ -13,7 +13,7 @@
 		<script src="http://code.jquery.com/jquery-1.7.2.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
 		<!-- <script type="text/javascript" src="assets/js/jquery.easing.min.js"></script>
 	<script type="text/javascript" src="assets/js/jquery.mixitup.min.js"></script>
 	<script type="text/javascript" src="http://www.queness.com/js/bsa.js"></script>
@@ -66,12 +66,13 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body>
+		<div>				<h1>{{ name }}</h1>
+</div>
 
 		<!-- Wrapper -->
 			<div id="wrapper">
 
 				<!-- Header -->
-
 
 
 
@@ -90,7 +91,7 @@
 										<!-- <a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a> -->
 										<section id="intro">
 										<header>
-											<h2> Laborer Database </h2>
+											<h2> Laborer Database</h2>
 											<p> Filter and choose laborers to complete your job requests. </br> A message will be sent out to all the laborers selected.</p>
 
 										</header>
@@ -145,6 +146,7 @@
 								<input type='button' id='hideshow' value='Create Job' class="job-margin">
 								<div id="to_show" style="display: none;">
 									<label class="reset-label"> <input Placeholder="Title of the Job" type="text" name="title_input"></label>
+									<!-- <input type="text" name="city" id="city" value="" placeholder="City" /> -->
 									<label class="reset-label"> <input Placeholder="Description of the Job" type="text" name="description_input"></label>
 									<label class="reset-label"> <input Placeholder="Number of Workers" type="text" name="number_input"></label>
 									<label class="reset-label"> <input PlaceHolder="Time" type="text" name="time_input"></label>
@@ -276,14 +278,14 @@
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/skel.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-			<script src="assets/js/employer.js"></script>
+			<script src="/static/assets/js/employer.js"></script>
 			<!-- <script src="assets/js/filtering.js"></script> -->
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+			<script src="/static/assets/js/main.js"></script>
 
 	</body>
 </html>
