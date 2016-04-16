@@ -1,5 +1,7 @@
-from flask import render_template, redirect, request
-from app import app, models, db
+from flask import render_template, redirect, request, url_for
+from app import app, models, db, bcrypt, login_manager
+from flask_bcrypt import generate_password_hash
+from flask_login import login_user
 import json
 
 @app.route('/')
@@ -14,8 +16,16 @@ def index():
 @app.route('/landingpage/', methods=['POST'])
 def landing():
 	name = request.form['username']
+	password = request.form['password']
 	print(name)
-	return render_template('LandingPage.html',name=name)
+	user = models.Employers.query.filter_by(username=name).first_or_404()
+	if bcrypt.check_password_hash(user._password,password):
+		login_user(user)
+		return render_template('LandingPage.html',name=name)
+	else:
+		return redirect(url_for('index'))
+
+	return render_template('index.html')
 
 
 @app.route('/signup')
@@ -38,7 +48,7 @@ def CreateEmployer():
 	    email = request.form['email'],
 	    username = request.form['username'],
 	    bestmethod = request.form['demo-priority'],
-	    password = request.form['password'],
+	    _password = generate_password_hash(request.form['password'],12),
 	    phone = request.form['phone']
 	)
 	print(name)

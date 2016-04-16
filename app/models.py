@@ -1,4 +1,4 @@
-from app import db
+from app import db, bcrypt
 
 class Employers(db.Model):
     employer_id = db.Column(db.Integer, primary_key=True)
@@ -13,9 +13,24 @@ class Employers(db.Model):
     email = db.Column(db.String(120), unique=False)
     username = db.Column(db.String(60), unique=False)
     bestmethod = db.Column(db.String(60), unique=False)
-    password = db.Column(db.String(60), unique=False)
+    _password = db.Column(db.String(60), unique=False)
     phone = db.Column(db.String(20), unique=False)
     requests = db.relationship('employer_request', backref='employers',lazy='dynamic')
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        try:
+            return unicode(self.employer_id)  # python 2
+        except NameError:
+            return str(self.employer_id)  # python 3
 
 class employer_request(db.Model):
     request_id = db.Column(db.Integer, primary_key=True)
