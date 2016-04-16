@@ -18,7 +18,7 @@ from app import views, models
 
 from models import Employers
 
-login_manager.login_view = "landing"
+login_manager.login_view = "login"
 
 @login_manager.user_loader
 def load_user(user_id):

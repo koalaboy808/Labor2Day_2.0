@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, url_for
+from flask import render_template, redirect, request, url_for, session, escape, jsonify
 from app import app, models, db, bcrypt, login_manager
 from flask_bcrypt import generate_password_hash
 from flask_login import login_user
@@ -7,25 +7,45 @@ import json
 @app.route('/')
 @app.route('/index')
 def index():
+	if 'username' in session:
+		username = escape(session['username'])
+		return render_template('LandingPage.html',name=username)
+	else:
+		return render_template('index.html')
 	# if request.method =="POST":
 	# 	if request.form['submit'] == "Login":
 	# 		return redirect('/signup')
-	return render_template('index.html')
 
 
-@app.route('/landingpage/', methods=['POST'])
-def landing():
+
+@app.route('/login/', methods=['POST'])
+def login():
 	name = request.form['username']
 	password = request.form['password']
 	print(name)
 	user = models.Employers.query.filter_by(username=name).first_or_404()
 	if bcrypt.check_password_hash(user._password,password):
 		login_user(user)
-		return render_template('LandingPage.html',name=name)
+		session['username'] = name
+		username = escape(session['username'])
+		return redirect(url_for('landingpage'))
 	else:
 		return redirect(url_for('index'))
 
 	return render_template('index.html')
+
+
+@app.route('/landingpage')
+def landingpage():
+	if 'username' in session:
+		username = escape(session['username'])
+		# get_user_id = models.Employers.query.filter_by(username=username)
+		# user_id = get_user_id[0].employer_id
+		# job_data = models.employer_request.query.filter_by(emp_id=user_id)
+		# print(job_data[0].request_title)
+		return render_template('LandingPage.html',name=username)
+	else:
+		return render_template('index.html')
 
 
 @app.route('/signup')
@@ -54,7 +74,9 @@ def CreateEmployer():
 	print(name)
 	db.session.add(employer)
 	db.session.commit()
-	return render_template('LandingPage.html',name=name)
+	session['username'] = request.form['username']
+	user_name = escape(session['username'])
+	return render_template('LandingPage.html',name=user_name)
 
 @app.route('/CreateJobCard', methods=['POST'])
 def CreateJobCard():
@@ -94,3 +116,36 @@ def CreateJobCard():
 	print("asdasdasdasdasdasdasdasdsadas")
 	return 'yes'
 	# return render_template('LandingPage.html')
+
+
+@app.route('/logout')
+def logout():
+	session.pop('username', None)
+	return redirect(url_for('index'))
+
+@app.route('/loadjobcards', methods=['POST'])
+def loadjobcards():
+	jobcards = []
+	username = escape(session['username'])
+	get_user_id = models.Employers.query.filter_by(username=username)
+	user_id = get_user_id[0].employer_id
+	job_data = models.employer_request.query.filter_by(emp_id=user_id)
+
+	# print(job_data[1].request_title)
+	for jobs in job_data:
+		temp={}
+		temp["request_title"] = jobs.request_title
+		temp["request_description"] = jobs.request_description
+		temp["request_time"] = jobs.request_time
+		temp["request_num_ppl"] = jobs.request_num_ppl
+		# temp.append(jobs.request_description)
+		# temp.append(jobs.request_time)
+		# temp.append(jobs.request_num_ppl)
+		jobcards.append(temp)
+
+	print(jobcards)
+	#
+	# print(jobs[0])
+
+	# return jsonify(result=jobcards)
+	return json.dumps(jobcards)

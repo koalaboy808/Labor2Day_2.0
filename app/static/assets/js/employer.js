@@ -11,6 +11,47 @@ var laborer_array = ["Jose Cuervo","Mr Potato","Miso Horny","Ching Chong","Mexic
 	"Jose Cuervo","Mr Potato","Miso Horny","Ching Chong","Mexican Rash"
 ]
 
+$.ajax({
+	 url: "/loadjobcards",
+	 type: "post",
+	// contentType: 'application/json;charset=UTF-8',
+	 success: function(response){
+		 console.log(response);
+		 console.log(response[0])
+		 var data = jQuery.parseJSON(response);
+		 console.log(data[0]["request_title"])
+
+
+		//  var items = response.
+		//  console.log(response.length);
+
+		for(i=0;i<data.length;i++)
+		{
+
+		var title_input = data[i]["request_title"];
+ 		 var description_input = data[i]["request_description"];
+ 		 var number_input = data[i]["request_num_ppl"];
+ 		 var time_input = data[i]["request_time"];
+ 			$(".make-laborer").append("<div class='move-laborer'> <button2>" + title_input + "</button2> </div>")
+ 			$(".mini-posts").append($("<article class='mini-post '>" +
+ 			 "<header class='" + title_input  +  "'>" +
+ 				 "<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
+ 				 "<p class='minipost-margin'>" + number_input + "</p>" +
+ 				 "<p class='minipost-margin'>" + time_input + "</p>" +
+ 				 "<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> </header>" +
+
+ 			 " <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
+ 			 ));
+
+		}
+
+
+
+
+
+	 }
+});
+
 console.log(laborer_array.length);
 
 // n=1
