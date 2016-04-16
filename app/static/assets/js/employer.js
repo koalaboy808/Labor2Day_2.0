@@ -66,15 +66,18 @@ $('#job_submit').on('click', function callAPI() {
 			"<p class='minipost-margin'>" + time_input + "</p>" +
 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> </header>" +
 
-		" <a href='#' class='image'><img src='images/pic04.jpg' alt='' /></a> </article>"
+		" <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
 		));
 	$(".reset-label").on("focus", function(){
         $(".reset-label").val("");
     });
 	$(this).parent().hide(400,"swing");
 
+	console.log(document.getElementById("username").innerHTML);
+
 	var data = {
 	      data: JSON.stringify({
+													"username": document.getElementById("username").innerHTML,
 	                        "cardtitle": title_input,
 													"description": description_input,
 													"numberofworkers": number_input,

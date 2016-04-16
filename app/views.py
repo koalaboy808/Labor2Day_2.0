@@ -49,17 +49,23 @@ def CreateEmployer():
 @app.route('/CreateJobCard', methods=['POST'])
 def CreateJobCard():
 	data = json.loads(request.form.get('data'))
+	username = data['username']
 	title_card = data['cardtitle']
 	descriptiom_card = data['description']
 	number_card = data['numberofworkers']
 	time_card = data['timeofjob']
+
+	get_user_id = models.Employers.query.filter_by(username=username)
+	user_id = get_user_id[0].employer_id
+	print(user_id)
+
 
 	request_table = models.employer_request(
 		request_title = title_card,
 		request_description = descriptiom_card,
 		request_num_ppl = number_card,
 		request_time = time_card,
-		emp_id = '1'
+		emp_id = user_id
 	    # street2 = request.form['street2'],
 	)
 	db.session.add(request_table)
