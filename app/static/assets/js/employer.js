@@ -42,6 +42,10 @@ for (i=0; i < laborer_array.length; i++) {
       // n+=1;
 	// n+=1;
 	console.log(laborer_array[i]);
+
+
+
+
 }
 
 $(document).ready(function(){
@@ -68,6 +72,31 @@ $('#job_submit').on('click', function callAPI() {
         $(".reset-label").val("");
     });
 	$(this).parent().hide(400,"swing");
+
+	var data = {
+	      data: JSON.stringify({
+	                        "cardtitle": title_input,
+													"description": description_input,
+													"numberofworkers": number_input,
+													"timeofjob": time_input
+	                    })
+	   };
+console.log(data);
+
+	$.ajax({
+	   url: "/CreateJobCard",
+	   type: "post",
+		 data: data,
+    // contentType: 'application/json;charset=UTF-8',
+	   success: function(response){
+	   }
+	});
+
+	// $.getJSON('/CreateJobCard', {}
+  //     , function(data) {
+  //
+  //     });
+
 });
 
 jQuery(document).ready(function(){

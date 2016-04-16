@@ -36,7 +36,7 @@
 <h2><center>SIGN UP WITH LABOR2DAY</center></h2>
 								<section>
 									<!-- <h3>Form</h3> -->
-									<form method="post" action="#">
+									<form method="post" action="{{url_for('CreateEmployer')}}">
 										<div class="row uniform">
 											<div class="4u 12u$(xsmall)">
 												<input type="text" name="first_name" id="first_name" value="" placeholder="First Name" />
@@ -65,10 +65,10 @@
 												<div class="select-wrapper">
 													<select name="state" id="state">
 														<option value="">- State -</option>
-														<option value="1">California</option>
-														<option value="2">New Mexico</option>
-														<option value="3">North Dakota</option>
-														<option value="4">Georgia</option>
+														<option value="California">California</option>
+														<option value="New Mexico">New Mexico</option>
+														<option value="North Dakota">North Dakota</option>
+														<option value="Georgia">Georgia</option>
 													</select>
 												</div>
 											</div>
@@ -77,10 +77,13 @@
 											</div>
 
 
-											<div class="6u 12u$(xsmall)">
+											<div class="4u 12u$(xsmall)">
 												<input type="email" name="email" id="email" value="" placeholder="Email" />
 											</div>
-											<div class="6u$ 12u$(xsmall)">
+											<div class="4u 12u$(xsmall)">
+												<input type="text" name="username" id="username" value="" placeholder="Username" />
+											</div>
+											<div class="4u$ 12u$(xsmall)">
 												<input type="text" name="phone" id="phone" value="" placeholder="Phone Number" />
 											</div>
 
@@ -99,15 +102,15 @@
 												<h3>Best Method to contact</h3>
 											</div>
 											<div class="3u 12u$(small)">
-												<input type="radio" id="emailselect" name="demo-priority" checked>
+												<input type="radio" id="emailselect" value="email" name="demo-priority" checked>
 												<label for="emailselect">Email</label>
 											</div>
 											<div class="3u 12u$(small)">
-												<input type="radio" id="phoneselect" name="demo-priority">
+												<input type="radio" id="phoneselect" value="phone" name="demo-priority">
 												<label for="phoneselect">Phone</label>
 											</div>
 											<div class="3u$ 12u$(small)">
-												<input type="radio" id="bothselect" name="demo-priority">
+												<input type="radio" id="bothselect" value="both" name="demo-priority">
 												<label for="bothselect">Both</label>
 											</div>
 
