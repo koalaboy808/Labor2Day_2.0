@@ -40,5 +40,19 @@ class employer_request(db.Model):
     request_num_ppl = db.Column(db.Integer)
     emp_id = db.Column(db.Integer, db.ForeignKey('employers.employer_id'))
 
+class fulfillment(db.Model):
+    fulfillment_id = db.Column(db.Integer, primary_key=True)
+    fulfillment_req_id = db.Column(db.Integer)
+    laborers = db.relationship('laborer', backref='fulfillment',lazy='dynamic')
+
+
+class laborer(db.Model):
+    laborer_id = db.Column(db.Integer, primary_key=True)
+    laborer_first_name = db.Column(db.String(120))
+    laborer_last_name = db.Column(db.String(100))
+    laborer_skills = db.Column(db.String(50))
+    laborer_phone_num = db.Column(db.Integer)
+    fulfl_id = db.Column(db.Integer, db.ForeignKey('fulfillment.fulfillment_id'))
+
     # def __repr__():
     #     return request_title
