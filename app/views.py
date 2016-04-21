@@ -1,9 +1,11 @@
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, url_for
+from flask_login import login_user
 from app import app, models, db
+from flask_bcrypt import generate_password_hash
 import json
 
 @app.route('/')
-@app.route('/index')
+@app.route('/index', methods=["GET", "POST"])
 def index():
 	# if request.method =="POST":
 	# 	if request.form['submit'] == "Login":
@@ -14,8 +16,19 @@ def index():
 @app.route('/landingpage/', methods=['POST'])
 def landing():
 	name = request.form['username']
-	print(name)
-	return render_template('LandingPage.html',name=name)
+	# print(name)
+	user = models.Employers.query.filter_by(username=name).first_or_404()
+	if user.is_correct_password(name):
+		print(user.is_correct_password(name))
+		login_user(user)
+
+		return render_template('LandingPage.html',name=name)
+	else:
+		print(user)
+		print(user.is_correct_password(name))
+		print("wrong")
+		return render_template('index.html')
+	# return render_template('LandingPage.html',name=name)
 
 
 @app.route('/signup')
@@ -27,6 +40,7 @@ def signup():
 def CreateEmployer():
 	name = request.form['username']
 	employer = models.Employers(
+	# employer = models.Employers(
 		fname = request.form['first_name'],
 		mname = request.form['middle_name'],
 		lname = request.form['last_name'],
@@ -38,13 +52,14 @@ def CreateEmployer():
 	    email = request.form['email'],
 	    username = request.form['username'],
 	    bestmethod = request.form['demo-priority'],
-	    password = request.form['password'],
+	    _password = generate_password_hash(request.form['password'], 12),
 	    phone = request.form['phone']
 	)
 	print(name)
 	db.session.add(employer)
 	db.session.commit()
 	return render_template('LandingPage.html',name=name)
+	# return redirect(url_for('landingpage', name=name))
 
 @app.route('/CreateJobCard', methods=['POST'])
 def CreateJobCard():
