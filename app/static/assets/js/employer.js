@@ -11,29 +11,29 @@ var laborer_array = ["Jose Cuervo","Mr Potato","Miso Horny","Ching Chong","Mexic
 	"Jose Cuervo","Mr Potato","Miso Horny","Ching Chong","Mexican Rash"
 ]
 
-// var laborer_object = [
-// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643}
+var laborer_object = [
+	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643}
 
-// ]
+]
 
 $.ajax({
 	 url: "/loadjobcards",
@@ -64,20 +64,66 @@ $.ajax({
 	}
 });
 
-console.log(laborer_array.length);
+// console.log(laborer_array.length);
 
-// n=1
-for (i=0; i < laborer_array.length; i++) {
-  var modalID = 'modal_laborer' + String(i);
-	$("#card-right")
-          .append($("<div class='card-panel blue-grey col s12 m3 l3 hoverable laborer-margin make-laborer'><div class='card-action buttonpadding'> <button id='prof' class='btn-floating modal-trigger' data-toggle='modal' data-target='" + modalID + "' name=" + laborer_array[i] + "><i class='material-icons'>info</i></button> </div>" +
-                "<h5>" + laborer_array[i] + "</h5>" +
-                // "</p> <div class='card-action'> <button id='prof' class='btn modal-trigger' data-toggle='modal' data-target='#modal_laborer' name=" + laborer_array[i] + "> Profileeee </button> </div> </div>"
-                "<div id='" + modalID + "' class = 'modal bottom-sheet'> <div class = 'modal-content'> <h4>" + laborer_array[i] +
-                "</h4><p>I am checking if i see this text</br>We will be populating the data from our backend integration</p></div></div> </div>"
-                ));
-	console.log(laborer_array[i]);
+// // n=1
+// for (i=0; i < laborer_array.length; i++) {
+//   var modalID = 'modal_laborer' + String(i);
+// 	$("#card-right")
+//           .append($("<div class='card-panel blue-grey col s12 m3 l3 hoverable laborer-margin make-laborer'><div class='card-action buttonpadding'> <button id='prof' class='btn-floating modal-trigger' data-toggle='modal' data-target='" + modalID + "' name=" + laborer_array[i] + "><i class='material-icons'>info</i></button> </div>" +
+//                 "<h5>" + laborer_array[i] + "</h5>" +
+//                 // "</p> <div class='card-action'> <button id='prof' class='btn modal-trigger' data-toggle='modal' data-target='#modal_laborer' name=" + laborer_array[i] + "> Profileeee </button> </div> </div>"
+//                 "<div id='" + modalID + "' class = 'modal bottom-sheet'> <div class = 'modal-content'> <h4>" + laborer_array[i] +
+//                 "</h4><p>I am checking if i see this text</br>We will be populating the data from our backend integration</p></div></div> </div>"
+//                 ));
+// 	console.log(laborer_array[i]);
+// }
+
+// var practice = ["hello","goodbye"]
+function list_skills(_list) {
+	var out = "";
+	for (i=0; i < _list.length; i++) {
+		if (i==_list.length) {
+			out+= _list[i];
+		} else {
+			out += _list[i] + ", ";
+		}
+	}
+	return out;
 }
+
+// alert(list_skills(practice));
+$(document).ready(function(){
+	var out_list = []
+	for (i=0; i < laborer_object.length; i++) {
+		var laborer_skills = laborer_object[i]['laborer_skills']
+		out_list.push(laborer_skills.join())
+
+		// var out_skills = list_skills(laborer_skills)
+		// console.log(out_skills)
+	}
+	console.log(out_list)
+
+	for (i=0; i < laborer_object.length; i++) {
+		var laborer_first_name = laborer_object[i]['laborer_first_name']
+		var laborer_last_name = laborer_object[i]['laborer_last_name']
+		var laborer_skills = laborer_object[i]['laborer_skills']
+		var laborer_phone_num = laborer_object[i]['laborer_phone_num']
+		// var out_skills = list_skills(laborer_skills)
+	  var modalID = 'modal_laborer' + String(i);
+		$("#card-right")
+	          .append($("<div class='card-panel blue-grey col s12 m3 l3 hoverable laborer-margin make-laborer'><div class='card-action buttonpadding'> <button id='prof' class='btn-floating modal-trigger' data-toggle='modal' data-target='" + modalID + "' name=" + laborer_first_name + " " + laborer_last_name + "><i class='material-icons'>info</i></button> </div>" +
+	                "<h5 class='card-add-name'>" + laborer_first_name + " " + laborer_last_name + "</h5>" +
+	                "<p>" + "Skills: " + out_list[i] + "</p>" + 
+	                // "</p> <div class='card-action'> <button id='prof' class='btn modal-trigger' data-toggle='modal' data-target='#modal_laborer' name=" + laborer_array[i] + "> Profileeee </button> </div> </div>"
+	                "<div id='" + modalID + "' class = 'modal bottom-sheet'> <div class = 'modal-content'>" +
+	                "<h5>" + laborer_first_name + " " + laborer_last_name + "</h5>" +
+	                "<p>" + "Skills: " + out_list[i] + "</p>" +
+	                "<p> Reviews and Verification to come! </p></div></div> </div>"
+	                ));
+		// console.log(laborer_object[i]['laborer_first_name']);
+	}
+});
 
 
 $(document).ready(function(){
@@ -145,9 +191,14 @@ $('#card-right').on('click', 'button2', function() {
 	// alert($(this).parent().parent().html());
 	// alert($("h5").html())
 	var to_append = $(this).html();
-	console.log(to_append);
-	var lab_name = $(this).parent().parent().find("h5")
-	console.log($(this).parent().parent().find("h5").html());
+	console.log("to_append: " + to_append);
+
+	var lab_name = $(this).parent().parent().find(".card-add-name")
+	console.log("$(this).parent().parent().find('card-add-name').html(): " + $(this).parent().parent().find(".card-add-name").html());
+
+	console.log("labname: " + lab_name)
+
 	$(this).parent().parent().remove()
+
 	lab_name.appendTo("."+to_append)
 });
