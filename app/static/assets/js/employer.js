@@ -64,6 +64,36 @@ $.ajax({
 	}
 });
 
+
+// $.ajax({
+// 	 url: "/loadlaborercard",
+// 	 type: "post",
+// 	// contentType: 'application/json;charset=UTF-8',
+// 	 success: function(response){
+// 		console.log(response);
+// 		console.log(response[0])
+// 		var data = jQuery.parseJSON(response);
+// 		console.log(data[0]["request_title"])
+//
+// 		for(i=0;i<data.length;i++)
+// 		{
+// 			var title_input = data[i]["request_title"];
+// 	 		var description_input = data[i]["request_description"];
+// 	 		var number_input = data[i]["request_num_ppl"];
+// 	 		var time_input = data[i]["request_time"];
+// 	 		$(".make-laborer").append("<div class='move-laborer'> <button2>" + title_input + "</button2> </div>")
+// 	 		$(".mini-posts").append($("<article class='mini-post '>" +
+// 	 			"<header class='" + title_input  +  "'>" +
+// 	 			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
+// 	 			"<p class='minipost-margin'>" + number_input + "</p>" +
+// 	 			"<p class='minipost-margin'>" + time_input + "</p>" +
+// 	 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> </header>" +
+// 	 			 " <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
+// 	 		));
+// 		}
+// 	}
+// });
+
 // console.log(laborer_array.length);
 
 // // n=1
@@ -114,7 +144,7 @@ $(document).ready(function(){
 		$("#card-right")
 	          .append($("<div class='card-panel blue-grey col s12 m3 l3 hoverable laborer-margin make-laborer'><div class='card-action buttonpadding'> <button id='prof' class='btn-floating modal-trigger' data-toggle='modal' data-target='" + modalID + "' name=" + laborer_first_name + " " + laborer_last_name + "><i class='material-icons'>info</i></button> </div>" +
 	                "<h5 class='card-add-name'>" + laborer_first_name + " " + laborer_last_name + "</h5>" +
-	                "<p>" + "Skills: " + out_list[i] + "</p>" + 
+	                "<p>" + "Skills: " + out_list[i] + "</p>" +
 	                // "</p> <div class='card-action'> <button id='prof' class='btn modal-trigger' data-toggle='modal' data-target='#modal_laborer' name=" + laborer_array[i] + "> Profileeee </button> </div> </div>"
 	                "<div id='" + modalID + "' class = 'modal bottom-sheet'> <div class = 'modal-content'>" +
 	                "<h5>" + laborer_first_name + " " + laborer_last_name + "</h5>" +
