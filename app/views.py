@@ -201,3 +201,31 @@ def loadjobcards():
 
 	# return jsonify(result=jobcards)
 	return json.dumps(jobcards)
+
+@app.route('/loadlaborers', methods=['GET'])
+def loadlaborers():
+	laborers = []
+	# username = escape(session['username'])
+	laborer_data = models.laborer.query.all()
+	# user_id = get_user_id[0].employer_id
+	# job_data = models.employer_request.query.filter_by(emp_id=user_id)
+
+	# print(job_data[1].request_title)
+	for laborer in laborer_data:
+		temp={}
+		temp["laborer_id"] = laborer.laborer_id
+		temp["laborer_name"] = laborer.laborer_name
+		temp["laborer_phone_num"] = laborer.laborer_phone_num
+		temp["laborer_availability"] = laborer.laborer_availability
+		temp["laborer_skill"] = laborer.laborer_skill
+		# temp.append(jobs.request_description)
+		# temp.append(jobs.request_time)
+		# temp.append(jobs.request_num_ppl)
+		laborers.append(temp)
+
+	print(laborers)
+	#
+	# print(jobs[0])
+
+	# return jsonify(result=jobcards)
+	return json.dumps(laborers)
