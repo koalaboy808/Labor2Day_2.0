@@ -11,19 +11,24 @@ def index():
 		username = escape(session['username'])
 		return render_template('LandingPage.html',name=username)
 	else:
-		return render_template('index.html')
-	# if request.method =="POST":
-	# 	if request.form['submit'] == "Login":
-	# 		return redirect('/signup')
-
+		try:
+			error=request.args['error']
+			error=error[1:len(error)-1]
+			return render_template('index.html', error=error)
+		except:
+			return render_template('index.html')
 
 
 @app.route('/login/', methods=['POST'])
 def login():
 	name = request.form['username']
 	password = request.form['password']
-	print(name)
+	# print(name)
+	# print("bcrypt")
+	# print(models.Employers.query.filter_by(username=name).first_or_404())
+	
 	user = models.Employers.query.filter_by(username=name).first_or_404()
+
 	if bcrypt.check_password_hash(user._password,password):
 		login_user(user)
 		session['username'] = name
@@ -34,6 +39,11 @@ def login():
 
 	return render_template('index.html')
 
+@app.errorhandler(404)
+def page_not_found(error):
+	error = json.dumps("Username does not exist")
+	# error = escape("Username does not exist")
+	return redirect(url_for('index', error=error))
 
 @app.route('/landingpage')
 def landingpage():
