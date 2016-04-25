@@ -1,28 +1,28 @@
 var laborer_array = [];
 
-var laborer_object = [
-	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643}
-
-]
+// var laborer_object = [
+// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
+// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643}
+//
+// ]
 
 
 $.ajax({
