@@ -187,6 +187,7 @@ def loadjobcards():
 	user_id = get_user_id[0].employer_id
 	job_data = models.employer_request.query.filter_by(emp_id=user_id)
 
+
 	# print(job_data[1].request_title)
 	for jobs in job_data:
 		temp={}
@@ -195,9 +196,20 @@ def loadjobcards():
 		temp["request_description"] = jobs.request_description
 		temp["request_time"] = jobs.request_time
 		temp["request_num_ppl"] = jobs.request_num_ppl
+		laborer_array = []
+		laborers = models.fulfillment.query.filter_by(fulfillment_request_id=jobs.request_id)
+		for laborer_data in laborers:
+			laborer_name = models.laborer.query.filter_by(laborer_id=laborer_data.fulfillment_laborer_id)
+			temp_name = {}
+			for names in laborer_name:
+				temp_name["id"] = names.laborer_id
+				temp_name["name"] = names.laborer_name
+				laborer_array.append(temp_name)
+
 		# temp.append(jobs.request_description)
 		# temp.append(jobs.request_time)
 		# temp.append(jobs.request_num_ppl)
+		temp["laborer_data"] = laborer_array
 		jobcards.append(temp)
 
 	print(jobcards)

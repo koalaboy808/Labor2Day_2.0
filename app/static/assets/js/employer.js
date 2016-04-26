@@ -1,29 +1,5 @@
 var laborer_array = [];
 
-// var laborer_object = [
-// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Jose", laborer_last_name: "Cuervo", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mr", laborer_last_name: "Potato", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Miso", laborer_last_name: "Horny", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Ching", laborer_last_name: "Chong", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643},
-// 	{laborer_first_name: "Mexican", laborer_last_name: "Rash", laborer_skills:["gardening","pool"], laborer_phone_num:8084587643}
-//
-// ]
-
 
 $.ajax({
 	 url: "/loadlaborers",
@@ -62,22 +38,33 @@ $.ajax({
 
 		for(i=0;i<data.length;i++)
 		{
+			console.log("this is the " + i + " th card")
 			var _request_id = data[i]["request_id"]
 			var title_input = data[i]["request_title"];
 	 		var description_input = data[i]["request_description"];
 	 		var number_input = data[i]["request_num_ppl"];
 	 		var time_input = data[i]["request_time"];
+			var laborer_string = ""
+			for(j=0;j<data[i]["laborer_data"].length;j++)
+			{
+				laborer_string +=  "<h5 class='laborer-dark' id = '"+data[i]["laborer_data"][j]["id"]+"' style='padding-top:1em'>" + data[i]["laborer_data"][j]["name"] + "</h5>"
+				//console.log("ace venture" + data[i]["laborer_data"][j]["name"])
+
+		}
+		console.log(laborer_string)
 	 		$(".make-laborer").append("<div class='move-laborer'> <button2 id='"+_request_id+"'>" + title_input + "</button2> </div>")
 	 		$(".mini-posts").append($("<article class='mini-post '>" +
 	 			"<header class='" + title_input  +  "'>" +
 	 			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
 	 			"<p class='minipost-margin'>" + number_input + "</p>" +
 	 			"<p class='minipost-margin'>" + time_input + "</p>" +
-	 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> </header>" +
+	 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time>"+laborer_string +"</header>" +
 	 			 " <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
 	 		));
-		}
+
+
 	}
+}
 });
 
 
@@ -227,6 +214,8 @@ $('#card-right').on('click', 'button2', function() {
 	console.log("to_append: " + to_append);
 
 	var lab_name = $(this).parent().parent().find(".card-add-name")
+
+
 	// var lab_id_test = document.getElementsByClassName('card-add-name')[2].id
 	// console.log(lab_id_test)
 	var lab_id = $(this).parent().parent().find(".card-add-name")[0].id
@@ -237,7 +226,11 @@ $('#card-right').on('click', 'button2', function() {
 
 	console.log("labname: " + lab_name)
 
+
 	$(this).parent().parent().remove()
+
+	lab_name = lab_name.addClass("laborer-dark")
+	lab_name = lab_name.removeClass("card-add-name")
 
 	lab_name.appendTo("."+to_append)
 

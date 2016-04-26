@@ -3647,3 +3647,9 @@ input[type="button2"],button2,.button2 {
 .card-add-name {
 	font-size: 1em;
 }
+
+.laborer-dark {
+	color: black;
+	font-size: .7em;
+	line-height: 0;
+}
