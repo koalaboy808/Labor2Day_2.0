@@ -1948,7 +1948,7 @@ input[type="button2"],button2,.button2 {
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 		background-color: #009688;
 		/*background-image: url(../../images/pic04.jpg);*/
-		border-radius: 4px;
+		border-radius: 1px;
 		border: 0;
 		color: black !important;
 		cursor: pointer;
@@ -3102,9 +3102,9 @@ input[type="button2"],button2,.button2 {
 
 /* Header */
 
-	body {
+/*	body {
 		padding-top: 3.5em;
-	}
+	}*/
 
 	#header {
 		display: -moz-flex;
@@ -3612,4 +3612,38 @@ input[type="button2"],button2,.button2 {
 
 	margin-top: .5em;
 	margin-bottom: .5em;
+}
+
+.parallax-container {
+    height: 10em;
+    /*width:100%*/
+}
+
+.header-info {
+	bottom: 0;
+    position: absolute;
+    right: 0;
+    padding-right: 3em;
+}
+
+.header-text {
+	color: #f4f4f4;
+}
+
+.button {
+	border-radius: 30px;
+}
+
+.text-light, .card-add-name {
+	color: #FFFFFF;
+	font-size: 0.7em;
+	font-family: "Raleway", Helvetica, sans-serif;
+	letter-spacing: 0.25em;
+	line-height: 1.65;
+	margin: 0 0 1em 0;
+	/*text-transform: uppercase;*/
+}
+
+.card-add-name {
+
 }

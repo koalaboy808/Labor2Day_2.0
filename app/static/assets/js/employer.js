@@ -133,9 +133,9 @@ console.log("checking2")
 		// var out_skills = list_skills(laborer_skills)
 	  var modalID = 'modal_laborer' + String(i);
 		$("#card-right")
-	          .append($("<div class='card-panel blue-grey col s12 m3 l3 hoverable laborer-margin make-laborer'><div class='card-action buttonpadding'> <button id='prof' class='btn-floating modal-trigger' data-toggle='modal' data-target='" + modalID + "' name=" + laborer_name + "><i class='material-icons'>info</i></button> </div>" +
+	          .append($("<div class='card-panel grey darken-3 col s12 m3 l3 hoverable laborer-margin make-laborer'><div class='card-action buttonpadding'> <button id='prof' class='btn-floating modal-trigger' data-toggle='modal' data-target='" + modalID + "' name=" + laborer_name + "><i class='material-icons'>info</i></button> </div>" +
 	                "<h5 class='card-add-name'>" + laborer_name + "</h5>" +
-	                "<p>" + "Skills: " + laborer_skills + "</p>" +
+	                "<p class='text-light'>" + "Skills: " + laborer_skills + "</p>" +
 	                // "</p> <div class='card-action'> <button id='prof' class='btn modal-trigger' data-toggle='modal' data-target='#modal_laborer' name=" + laborer_array[i] + "> Profileeee </button> </div> </div>"
 	                "<div id='" + modalID + "' class = 'modal bottom-sheet'> <div class = 'modal-content'>" +
 	                "<h5>" + laborer_name + "</h5>" +
