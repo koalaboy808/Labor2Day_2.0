@@ -62,11 +62,12 @@ $.ajax({
 
 		for(i=0;i<data.length;i++)
 		{
+			var _request_id = data[i]["request_id"]
 			var title_input = data[i]["request_title"];
 	 		var description_input = data[i]["request_description"];
 	 		var number_input = data[i]["request_num_ppl"];
 	 		var time_input = data[i]["request_time"];
-	 		$(".make-laborer").append("<div class='move-laborer'> <button2>" + title_input + "</button2> </div>")
+	 		$(".make-laborer").append("<div class='move-laborer'> <button2 id='"+_request_id+"'>" + title_input + "</button2> </div>")
 	 		$(".mini-posts").append($("<article class='mini-post '>" +
 	 			"<header class='" + title_input  +  "'>" +
 	 			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
@@ -126,6 +127,7 @@ function createlaborcard(){
 console.log("checking2")
 	for (i=0; i < laborer_array.length; i++) {
 		console.log("checking")
+		var laborer_id = laborer_array[i]['laborer_id']
 		var laborer_name = laborer_array[i]['laborer_name']
 		var laborer_skills = laborer_array[i]['laborer_skill']
 		var laborer_phone_num = laborer_array[i]['laborer_phone_num']
@@ -134,12 +136,12 @@ console.log("checking2")
 	  var modalID = 'modal_laborer' + String(i);
 		$("#card-right")
 	          .append($("<div class='card-panel grey darken-3 col s12 m3 l3 hoverable laborer-margin make-laborer'>" +
-	          		"<div class='row'>" + 
+	          		"<div class='row'>" +
 	          			"<div>" +
-	                		"<h5 class='card-add-name' style='padding-top:1em'>" + laborer_name + "</h5>" +
+	                		"<h5 class='card-add-name' id = '"+laborer_id+"' style='padding-top:1em'>" + laborer_name + "</h5>" +
 	                	"</div>" +
-	          			"<div class='card-action buttonpadding' style='float:right;'>" + 
-	          				"<button id='prof' class='btn-floating btn-small modal-trigger' data-toggle='modal' data-target='" + modalID + "' name=" + laborer_name + "><i class='material-icons'>menu</i></button>" + 
+	          			"<div class='card-action buttonpadding' style='float:right;'>" +
+	          				"<button id='prof' class='btn-floating btn-small modal-trigger' data-toggle='modal' data-target='" + modalID + "' name=" + laborer_name + "><i class='material-icons'>menu</i></button>" +
 	          			"</div>" +
 	                "</div>" +
 	                "<p class='text-light'>" + "Skills: " + laborer_skills + "</p>" +
@@ -165,7 +167,7 @@ $('#job_submit').on('click', function callAPI() {
 	var description_input = $("input[name=description_input]").val();
 	var number_input = $("input[name=number_input]").val();
 	var time_input = $("input[name=time_input]").val();
-  	$(".make-laborer").append("<div class='move-laborer'> <button2>" + title_input + "</button2> </div>")
+  	// $(".make-laborer").append("<div class='move-laborer'> <button2>" + title_input + "</button2> </div>")
   	$(".mini-posts").append($("<article class='mini-post '>" +
 		"<header class='" + title_input  +  "'>" +
 			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
@@ -201,6 +203,8 @@ $('#job_submit').on('click', function callAPI() {
 		 data: data,
     // contentType: 'application/json;charset=UTF-8',
 	   success: function(response){
+			 console.log(response)
+			 $(".make-laborer").append("<div class='move-laborer'> <button2 id='"+response+"'>" + title_input + "</button2> </div>")
 	   }
 	});
 });
@@ -223,6 +227,12 @@ $('#card-right').on('click', 'button2', function() {
 	console.log("to_append: " + to_append);
 
 	var lab_name = $(this).parent().parent().find(".card-add-name")
+	// var lab_id_test = document.getElementsByClassName('card-add-name')[2].id
+	// console.log(lab_id_test)
+	var lab_id = $(this).parent().parent().find(".card-add-name")[0].id
+	var req_id = _button2[0].id
+	console.log("lab id " + lab_id)
+	console.log("req id " + req_id)
 	console.log("$(this).parent().parent().find('card-add-name').html(): " + $(this).parent().parent().find(".card-add-name").html());
 
 	console.log("labname: " + lab_name)
@@ -230,4 +240,24 @@ $('#card-right').on('click', 'button2', function() {
 	$(this).parent().parent().remove()
 
 	lab_name.appendTo("."+to_append)
+
+	var data_tosend = {
+	    data: JSON.stringify({
+				"request_id": req_id,
+      	"laborer_id": lab_id
+	    })
+	};
+	console.log(data_tosend);
+
+	// pass data to route /CreateJobCard so can put in DB
+	$.ajax({
+	   url: "/Createfulfillment",
+	   type: "post",
+		 data: data_tosend,
+    // contentType: 'application/json;charset=UTF-8',
+	   success: function(response){
+	   }
+	});
+
+
 });

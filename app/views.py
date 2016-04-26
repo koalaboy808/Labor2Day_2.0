@@ -114,6 +114,9 @@ def CreateJobCard():
 	db.session.add(request_table)
 	db.session.commit()
 
+
+	get_request_id = models.employer_request.query.filter_by(request_title=title_card)
+	_request_id = get_request_id[0].request_id
 	# print(data)
 	# print(title_card)
 	# print(descriptiom_card)
@@ -125,7 +128,8 @@ def CreateJobCard():
 	# name = request.form['name']
 	# print(name)
 	print("asdasdasdasdasdasdasdasdsadas")
-	return 'yes'
+	# return _request_id
+	return json.dumps(_request_id)
 	# return render_template('LandingPage.html')
 
 
@@ -186,6 +190,7 @@ def loadjobcards():
 	# print(job_data[1].request_title)
 	for jobs in job_data:
 		temp={}
+		temp["request_id"] = jobs.request_id
 		temp["request_title"] = jobs.request_title
 		temp["request_description"] = jobs.request_description
 		temp["request_time"] = jobs.request_time
@@ -206,7 +211,7 @@ def loadjobcards():
 def loadlaborers():
 	laborers = []
 	# username = escape(session['username'])
-	laborer_data = models.laborer.query.all()
+	laborer_data = models.laborer.query.filter_by(laborer_availability="y")
 	# user_id = get_user_id[0].employer_id
 	# job_data = models.employer_request.query.filter_by(emp_id=user_id)
 
@@ -229,3 +234,26 @@ def loadlaborers():
 
 	# return jsonify(result=jobcards)
 	return json.dumps(laborers)
+
+@app.route('/Createfulfillment', methods=['POST'])
+def Createfulfillment():
+	data = json.loads(request.form.get('data'))
+	fulfillment_request_id = data['request_id']
+	fulfillment_laborer_id = data['laborer_id']
+
+
+	fulfillment_table = models.fulfillment(
+		fulfillment_request_id = fulfillment_request_id,
+		fulfillment_laborer_id = fulfillment_laborer_id,
+		fulfillment_status = "pending"
+	)
+
+	db.session.add(fulfillment_table)
+
+
+	get_laborer = models.laborer.query.filter_by(laborer_id=fulfillment_laborer_id)
+	get_laborer[0].laborer_availability = "n"
+	db.session.commit()
+
+
+	return "love"
