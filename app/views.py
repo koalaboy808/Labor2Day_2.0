@@ -249,23 +249,42 @@ def loadlaborers():
 
 @app.route('/Createfulfillment', methods=['POST'])
 def Createfulfillment():
+	i=0
 	data = json.loads(request.form.get('data'))
 	fulfillment_request_id = data['request_id']
 	fulfillment_laborer_id = data['laborer_id']
 
+	num_workers = models.employer_request.query.filter_by(request_id=fulfillment_request_id)
+	num_of_workers = num_workers[0].request_num_ppl
 
-	fulfillment_table = models.fulfillment(
-		fulfillment_request_id = fulfillment_request_id,
-		fulfillment_laborer_id = fulfillment_laborer_id,
-		fulfillment_status = "pending"
-	)
+	print("num_of_workers")
+	print(num_of_workers)
 
-	db.session.add(fulfillment_table)
+	count_workers = models.fulfillment.query.filter_by(fulfillment_request_id=fulfillment_request_id)
+	for count in count_workers:
+		i=i+1
+
+	print("count_of_workers")
+	print(i)
+
+	if i < num_of_workers:
+
+		fulfillment_table = models.fulfillment(
+			fulfillment_request_id = fulfillment_request_id,
+			fulfillment_laborer_id = fulfillment_laborer_id,
+			fulfillment_status = "pending"
+		)
+
+		db.session.add(fulfillment_table)
 
 
-	get_laborer = models.laborer.query.filter_by(laborer_id=fulfillment_laborer_id)
-	get_laborer[0].laborer_availability = "n"
-	db.session.commit()
+		get_laborer = models.laborer.query.filter_by(laborer_id=fulfillment_laborer_id)
+		get_laborer[0].laborer_availability = "n"
+		db.session.commit()
+
+		return "love"
+	else:
+		return "no"
 
 
-	return "love"
+	

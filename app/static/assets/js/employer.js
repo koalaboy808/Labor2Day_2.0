@@ -56,7 +56,7 @@ $.ajax({
 	 		$(".mini-posts").append($("<article class='mini-post '>" +
 	 			"<header class='" + title_input  +  "'>" +
 	 			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
-	 			"<p class='minipost-margin'>" + number_input + "</p>" +
+	 			"<p id='number_workers' class='minipost-margin'>" + number_input + " workers</p>" +
 	 			"<p class='minipost-margin'>" + time_input + "</p>" +
 	 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time>"+laborer_string +"</header>" +
 	 			 " <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
@@ -158,7 +158,7 @@ $('#job_submit').on('click', function callAPI() {
   	$(".mini-posts").append($("<article class='mini-post '>" +
 		"<header class='" + title_input  +  "'>" +
 			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
-			"<p class='minipost-margin'>" + number_input + "</p>" +
+			"<p id='number_workers' class='minipost-margin'>" + number_input + " workers</p>" +
 			"<p class='minipost-margin'>" + time_input + "</p>" +
 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> </header>" +
 
@@ -205,51 +205,43 @@ jQuery(document).ready(function(){
 
 
 $('#card-right').on('click', 'button2', function() {
-	var _button2 = $(this);
-	var _put = $(this).parent().parent()
-	// alert($("#h5")).html();
-	// alert($(this).parent().parent().html());
-	// alert($("h5").html())
-	var to_append = $(this).html();
-	console.log("to_append: " + to_append);
-
-	var lab_name = $(this).parent().parent().find(".card-add-name")
-
-
-	// var lab_id_test = document.getElementsByClassName('card-add-name')[2].id
-	// console.log(lab_id_test)
 	var lab_id = $(this).parent().parent().find(".card-add-name")[0].id
-	var req_id = _button2[0].id
+	var req_id = $(this)[0].id
+	var _put = $(this).parent().parent()
+	var to_append = $(this).html();
+
 	console.log("lab id " + lab_id)
 	console.log("req id " + req_id)
-	console.log("$(this).parent().parent().find('card-add-name').html(): " + $(this).parent().parent().find(".card-add-name").html());
 
-	console.log("labname: " + lab_name)
-
-
-	$(this).parent().parent().remove()
-
-	lab_name = lab_name.addClass("laborer-dark")
-	lab_name = lab_name.removeClass("card-add-name")
-
-	lab_name.appendTo("."+to_append)
+	var lab_name = $(this).parent().parent().find(".card-add-name")
+	var parent_parent = $(this).parent().parent()
 
 	var data_tosend = {
 	    data: JSON.stringify({
-				"request_id": req_id,
-      	"laborer_id": lab_id
+			"request_id": req_id,
+      		"laborer_id": lab_id
 	    })
 	};
 	console.log(data_tosend);
 
 	// pass data to route /CreateJobCard so can put in DB
 	$.ajax({
-	   url: "/Createfulfillment",
-	   type: "post",
-		 data: data_tosend,
-    // contentType: 'application/json;charset=UTF-8',
-	   success: function(response){
-	   }
+	    url: "/Createfulfillment",
+	    type: "post",
+		data: data_tosend,
+	    success: function(response){
+	    	if (response=="love") {
+	    		console.log("love")
+	    		parent_parent.remove()
+
+				lab_name = lab_name.addClass("laborer-dark")
+				lab_name = lab_name.removeClass("card-add-name")
+
+				lab_name.appendTo("."+to_append)
+	    	} else {
+	    		alert("Jobcard already full")
+	    	}
+	    }
 	});
 
 
