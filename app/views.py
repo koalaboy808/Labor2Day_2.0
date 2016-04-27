@@ -2,7 +2,12 @@ from flask import render_template, redirect, request, url_for, session, escape, 
 from app import app, models, db, bcrypt, login_manager
 from flask_bcrypt import generate_password_hash
 from flask_login import login_user
+from twilio.rest import TwilioRestClient
 import json
+
+twilioNum = "+12014742384"
+account_sid = "AC5db2f903ee4a9ad48869db297e2a8acd"
+auth_token = "868a8ae2f1377d3a421c2d7237d52fdc"
 
 @app.route('/')
 @app.route('/index')
@@ -280,11 +285,11 @@ def Createfulfillment():
 
 		get_laborer = models.laborer.query.filter_by(laborer_id=fulfillment_laborer_id)
 		get_laborer[0].laborer_availability = "n"
+		number = get_laborer[0].laborer_phone_num
+		client = TwilioRestClient(account_sid, auth_token)
+		message = client.messages.create(to=number, from_=twilioNum, body="We have found a job for you. Reply Yes to accept and No to decline.")
 		db.session.commit()
 
 		return "love"
 	else:
 		return "no"
-
-
-	
