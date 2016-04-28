@@ -122,16 +122,7 @@ def CreateJobCard():
 
 	get_request_id = models.employer_request.query.filter_by(request_title=title_card)
 	_request_id = get_request_id[0].request_id
-	# print(data)
-	# print(title_card)
-	# print(descriptiom_card)
-	# print(time_card)
 
-	# name = request.form['title_input']
-	# name = request.form['name']
-	# print(name)
-	# name = request.form['name']
-	# print(name)
 	print("asdasdasdasdasdasdasdasdsadas")
 	# return _request_id
 	return json.dumps(_request_id)
@@ -196,26 +187,27 @@ def loadjobcards():
 	# print(job_data[1].request_title)
 	for jobs in job_data:
 		temp={}
-		temp["request_id"] = jobs.request_id
-		temp["request_title"] = jobs.request_title
-		temp["request_description"] = jobs.request_description
-		temp["request_time"] = jobs.request_time
-		temp["request_num_ppl"] = jobs.request_num_ppl
-		laborer_array = []
-		laborers = models.fulfillment.query.filter_by(fulfillment_request_id=jobs.request_id)
-		for laborer_data in laborers:
-			laborer_name = models.laborer.query.filter_by(laborer_id=laborer_data.fulfillment_laborer_id)
-			temp_name = {}
-			for names in laborer_name:
-				temp_name["id"] = names.laborer_id
-				temp_name["name"] = names.laborer_name
-				laborer_array.append(temp_name)
+		if jobs.request_status == "open":
+			temp["request_id"] = jobs.request_id
+			temp["request_title"] = jobs.request_title
+			temp["request_description"] = jobs.request_description
+			temp["request_time"] = jobs.request_time
+			temp["request_num_ppl"] = jobs.request_num_ppl
+			laborer_array = []
+			laborers = models.fulfillment.query.filter_by(fulfillment_request_id=jobs.request_id)
+			for laborer_data in laborers:
+				laborer_name = models.laborer.query.filter_by(laborer_id=laborer_data.fulfillment_laborer_id)
+				temp_name = {}
+				for names in laborer_name:
+					temp_name["id"] = names.laborer_id
+					temp_name["name"] = names.laborer_name
+					laborer_array.append(temp_name)
 
-		# temp.append(jobs.request_description)
-		# temp.append(jobs.request_time)
-		# temp.append(jobs.request_num_ppl)
-		temp["laborer_data"] = laborer_array
-		jobcards.append(temp)
+			# temp.append(jobs.request_description)
+			# temp.append(jobs.request_time)
+			# temp.append(jobs.request_num_ppl)
+			temp["laborer_data"] = laborer_array
+			jobcards.append(temp)
 
 	print(jobcards)
 	#
@@ -293,3 +285,40 @@ def Createfulfillment():
 		return "love"
 	else:
 		return "no"
+
+@app.route('/jobcard_done', methods=['POST'])
+def jobcard_done():
+	print("lalalalalals")
+
+
+	data = json.loads(request.form.get('data'))
+	_request_id = int(data['request_id'].encode('ascii','ignore'))
+	_list_of_ids = (data['list_of_ids'])
+
+	print("1"	)
+	print(type(_list_of_ids))
+	print(_list_of_ids)
+	
+	get_employer_request = models.employer_request.query.filter_by(request_id=_request_id)
+	# print("2")
+	# print(type(get_employer_request[0].request_id))
+	get_employer_request[0].request_status = "closed"
+
+	x = models.fulfillment.query.filter_by(fulfillment_request_id=_request_id).delete()
+
+	for _id in _list_of_ids:
+		get_laborer = models.laborer.query.filter_by(laborer_id=_id)
+		get_laborer[0].laborer_availability = "y"
+
+	# get_laborer = models.laborer.query.filter_by(laborer_id=_laborer_id)
+	# print("laborer_id" + type(get_laborer[0].laborer_id))
+
+	# for laborer in get_laborer:
+	# 	laborer.laborer_availability = "n"
+
+	db.session.commit()
+
+	return "fuck functions and returns"
+
+
+

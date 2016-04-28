@@ -58,6 +58,8 @@ $.ajax({
 	 			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
 	 			"<p id='number_workers' class='minipost-margin'>" + number_input + " workers</p>" +
 	 			"<p class='minipost-margin'>" + time_input + "</p>" +
+	 			"</br>" +
+	 			"<button class='"+ _request_id +"' id='make-done'> Done </button>" +
 	 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time>"+laborer_string +"</header>" +
 	 			 " <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
 	 		));
@@ -155,15 +157,7 @@ $('#job_submit').on('click', function callAPI() {
 	var number_input = $("input[name=number_input]").val();
 	var time_input = $("input[name=time_input]").val();
   	// $(".make-laborer").append("<div class='move-laborer'> <button2>" + title_input + "</button2> </div>")
-  	$(".mini-posts").append($("<article class='mini-post '>" +
-		"<header class='" + title_input  +  "'>" +
-			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
-			"<p id='number_workers' class='minipost-margin'>" + number_input + " workers</p>" +
-			"<p class='minipost-margin'>" + time_input + "</p>" +
-			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> </header>" +
 
-		" <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
-	));
 	$(".reset-label").on("focus", function(){
         $(".reset-label").val("");
     });
@@ -185,14 +179,26 @@ $('#job_submit').on('click', function callAPI() {
 
 	// pass data to route /CreateJobCard so can put in DB
 	$.ajax({
-	   url: "/CreateJobCard",
-	   type: "post",
-		 data: data,
+	    url: "/CreateJobCard",
+	    type: "post",
+		data: data,
     // contentType: 'application/json;charset=UTF-8',
 	   success: function(response){
-			 console.log(response)
-			 $(".make-laborer").append("<div class='move-laborer'> <button2 id='"+response+"'>" + title_input + "</button2> </div>")
-	   }
+			console.log(response)
+			$(".make-laborer").append("<div class='move-laborer'> <button2 id='"+response+"'>" + title_input + "</button2> </div>")
+
+			$(".mini-posts").append($("<article class='mini-post '>" +
+				"<header class='" + title_input  +  "'>" +
+					"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
+					"<p id='number_workers' class='minipost-margin'>" + number_input + " workers</p>" +
+					"<p class='minipost-margin'>" + time_input + "</p>" +
+					"</br>" +
+					"<button class='"+ response +"' id='make-done'> Done </button>" +
+					"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> </header>" +
+
+				" <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
+			));
+	    } 
 	});
 });
 
@@ -245,4 +251,39 @@ $('#card-right').on('click', 'button2', function() {
 	});
 
 
+});
+
+$('.mini-posts').on('click', 'button', function() {
+	alert("button clicked");
+	var list_of_ids = []
+	// var number_workers = parseInt($(this).parent().find("#number_workers").html()[0])
+	var _request_id    = $(this).attr('class')
+	var _laborer_id    = $(this).parent().find(".laborer-dark")
+	for(i=0;i<_laborer_id.length;i++)
+	{
+		list_of_ids.push(_laborer_id[i].id)
+
+	}
+
+	console.log("laborer id: " + _laborer_id)
+	console.log("list" + list_of_ids)
+	// console.log("number_workers: " + number_workers)
+	console.log("_request_id: " + _request_id)
+
+
+	var data_tosend = {
+	    data: JSON.stringify({
+			"request_id": _request_id,
+			"list_of_ids": list_of_ids
+	    })
+	};
+
+	$.ajax({
+		url: "/jobcard_done",
+	    type: "post",
+		data: data_tosend,
+	    success: function(response){
+	    	console.log(response)
+		}
+	});
 });
