@@ -3619,6 +3619,13 @@ input[type="button2"],button2,.button2 {
     /*width:100%*/
 }
 
+.header-top {
+    top: 0;
+   position: absolute;
+   right: 0;
+   padding-right: 3em;
+}
+
 .header-info {
 	bottom: 0;
     position: absolute;
@@ -3652,4 +3659,9 @@ input[type="button2"],button2,.button2 {
 	color: black;
 	font-size: .7em;
 	line-height: 0;
+}
+
+a:hover {
+   border-bottom-color: transparent;
+   color: #424242  !important;
 }
