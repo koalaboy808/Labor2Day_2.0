@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Future Imperfect by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<script src="http://code.jquery.com/jquery-1.7.2.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="/static/assets/css/main.css" />
+		<link rel="stylesheet" href="/static/assets/css/profile.css" />
+	</head>
+	<body>
+		<div class="parallax-container">
+			<div class="parallax"><img src="../static/images/factory-black-white-header.png"></div>
+			<div class="header-info">
+				<div class="row">
+					<h4 class="header-text">{{ name }}</h1>
+					<h4 id="username" class="header-text"><a href="{{url_for('index')}}"> Home </a></h1>
+					<h4 class="header-text"><a href="{{url_for('logout')}}">Log Out</a></h1>
+				</div>
+			</div>
+		</div>
+		
+		
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Main -->
+				<div id="main">
+					<section id="intro">
+						<header>
+							<h2> Your Profile </h2>
+							<p> Customize your profile and look at old job requests.</p>
+						</header>
+					</section>
+					<div id ="profile-cards" class="row">
+						
+						
+					</div>
+				</div>
+
+			<!-- Sidebar -->
+				<div id="sidebar">
+
+					<!-- Footer -->
+						<section id="footer">
+							<ul class="icons">
+								<li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
+								<li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+							</ul>
+							<!--<p><a href="{{url_for('logout')}}">Log Out</a></p>-->
+							<p class="copyright">&copy; Labor2Day.</p>
+						</section>
+
+				</div>
+		</div>
+
+		<!-- Scripts -->
+		<script>
+			$(document).ready(function(){
+				$('.parallax').parallax();
+			});
+		</script>
+		<script src="/static/assets/js/jquery.min.js"></script>
+		<script src="/static/assets/js/skel.min.js"></script>
+		<script src="/static/assets/js/util.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+		<script src="/static/assets/js/employer.js"></script>
+		<!-- <script src="assets/js/filtering.js"></script> -->
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="/static/assets/js/main.js"></script>
+
+	</body>
+</html>

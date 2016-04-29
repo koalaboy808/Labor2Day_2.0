@@ -20,7 +20,8 @@
 			<div class="parallax"><img src="../static/images/factory-black-white-header.png"></div>
 			<div class="header-info">
 				<div class="row">
-					<h4 id="username" class="header-text">{{ name }}</h1>
+					<!--<h4 id="username" class="header-text">{{ name }}</h4>-->
+					<h4 id="username" class="header-text"><a href="{{url_for('profile')}}"> {{ name }}</a></h4>
 					<h4 class="header-text"><a href="{{url_for('logout')}}">Log Out</a></h1>
 				</div>
 			</div>

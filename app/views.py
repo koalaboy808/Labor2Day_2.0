@@ -86,7 +86,7 @@ def CreateEmployer():
 	    _password = generate_password_hash(request.form['password'],12),
 	    phone = request.form['phone']
 	)
-	print(name)
+	# print(name)
 	db.session.add(employer)
 	db.session.commit()
 	session['username'] = request.form['username']
@@ -95,18 +95,22 @@ def CreateEmployer():
 
 @app.route('/CreateJobCard', methods=['POST'])
 def CreateJobCard():
+	print "jack shit"
 	data = json.loads(request.form.get('data'))
-	username = data['username']
+	username = data['username'].lower()
 	title_card = data['cardtitle']
 	descriptiom_card = data['description']
 	number_card = data['numberofworkers']
 	time_card = data['timeofjob']
 
+	print "jackshit     4"
+	print "username: "
+	print(username)
 	get_user_id = models.Employers.query.filter_by(username=username)
 	user_id = get_user_id[0].employer_id
-	print(user_id)
+	# print(user_id)
 
-
+	print "jackshir 3"
 	request_table = models.employer_request(
 		request_title = title_card,
 		request_description = descriptiom_card,
@@ -119,11 +123,11 @@ def CreateJobCard():
 	db.session.add(request_table)
 	db.session.commit()
 
-
+	print "jack shit 2"
 	get_request_id = models.employer_request.query.filter_by(request_title=title_card)
 	_request_id = get_request_id[0].request_id
 
-	print("asdasdasdasdasdasdasdasdsadas")
+	# print("asdasdasdasdasdasdasdasdsadas")
 	# return _request_id
 	return json.dumps(_request_id)
 	# return render_template('LandingPage.html')
@@ -175,6 +179,13 @@ def logout():
 	session.pop('username', None)
 	return redirect(url_for('index'))
 
+@app.route('/profile')
+def profile():
+	username = escape(session['username'])
+	return render_template('profile.html', name=username)
+
+
+
 @app.route('/loadjobcards', methods=['POST'])
 def loadjobcards():
 	jobcards = []
@@ -209,7 +220,7 @@ def loadjobcards():
 			temp["laborer_data"] = laborer_array
 			jobcards.append(temp)
 
-	print(jobcards)
+	# print(jobcards)
 	#
 	# print(jobs[0])
 
@@ -237,7 +248,7 @@ def loadlaborers():
 		# temp.append(jobs.request_num_ppl)
 		laborers.append(temp)
 
-	print(laborers)
+	# print(laborers)
 	#
 	# print(jobs[0])
 
@@ -248,6 +259,7 @@ def loadlaborers():
 def Createfulfillment():
 	i=0
 	data = json.loads(request.form.get('data'))
+	print(data)
 	fulfillment_request_id = data['request_id']
 	fulfillment_laborer_id = data['laborer_id']
 
@@ -273,11 +285,15 @@ def Createfulfillment():
 		)
 
 		db.session.add(fulfillment_table)
-
+		print(fulfillment_table)
 
 		get_laborer = models.laborer.query.filter_by(laborer_id=fulfillment_laborer_id)
+		print(get_laborer[0].laborer_availability)
 		get_laborer[0].laborer_availability = "n"
+		print(get_laborer[0].laborer_availability)
+
 		number = get_laborer[0].laborer_phone_num
+		print(number)
 		client = TwilioRestClient(account_sid, auth_token)
 		message = client.messages.create(to=number, from_=twilioNum, body="We have found a job for you. Reply Yes to accept and No to decline.")
 		db.session.commit()
@@ -320,5 +336,53 @@ def jobcard_done():
 
 	return "fuck functions and returns"
 
+@app.route('/profile_cards', methods=['POST'])
+def profile_cards():
+	jobcards = []
+	username = escape(session['username'])
+	get_user_id = models.Employers.query.filter_by(username=username)
+	user_id = get_user_id[0].employer_id
+	job_data = models.employer_request.query.filter_by(emp_id=user_id)
 
+	# print(len(job_data))
+	# print(job_data[1].request_title)
+	counter =0
+	for jobs in job_data:
+		counter+=1
+		print("counter")
+		print(counter)
+		temp={}
+		print("jobs.request_status: ")
+		print(jobs.request_status)
+		print("jobs.request_id: ")
+		print(jobs.request_id)
+		print("\n")
+		if jobs.request_status == "closed":
+			temp["request_id"] = jobs.request_id
+			temp["request_title"] = jobs.request_title
+			temp["request_description"] = jobs.request_description
+			temp["request_time"] = jobs.request_time
+			temp["request_num_ppl"] = jobs.request_num_ppl
+			laborer_array = []
+			laborers = models.fulfillment.query.filter_by(fulfillment_request_id=jobs.request_id)
+			for laborer_data in laborers:
+				laborer_name = models.laborer.query.filter_by(laborer_id=laborer_data.fulfillment_laborer_id)
+				temp_name = {}
+				for names in laborer_name:
+					temp_name["id"] = names.laborer_id
+					temp_name["name"] = names.laborer_name
+					laborer_array.append(temp_name)
+
+			# temp.append(jobs.request_description)
+			# temp.append(jobs.request_time)
+			# temp.append(jobs.request_num_ppl)
+			temp["laborer_data"] = laborer_array
+			jobcards.append(temp)
+
+	# print(jobcards)
+	#
+	# print(jobs[0])
+
+	# return jsonify(result=jobcards)
+	return json.dumps(jobcards)
 

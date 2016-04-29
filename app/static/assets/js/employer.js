@@ -24,6 +24,45 @@ $.ajax({
 
 console.log(laborer_array)
 
+$.ajax({
+	 url: "/profile_cards",
+	 type: "post",
+	// contentType: 'application/json;charset=UTF-8',
+	 success: function(response){
+	 	// print('success profile_cards')
+	 	var data = jQuery.parseJSON(response);
+		for(i=0;i<data.length;i++)
+			{
+				console.log("this is the " + i + " th card")
+				var _request_id = data[i]["request_id"]
+				var title_input = data[i]["request_title"];
+		 		var description_input = data[i]["request_description"];
+		 		var number_input = data[i]["request_num_ppl"];
+		 		var time_input = data[i]["request_time"];
+				var laborer_string = ""
+				for(j=0;j<data[i]["laborer_data"].length;j++)
+					{
+						laborer_string +=  "<h5 class='laborer-dark' id = '"+data[i]["laborer_data"][j]["id"]+"' style='padding-top:1em'>" + data[i]["laborer_data"][j]["name"] + "</h5>"
+						//console.log("ace venture" + data[i]["laborer_data"][j]["name"])
+
+					}
+			// console.log(laborer_string)
+		 		// $(".make-laborer").append("<div class='move-laborer'> <button2 id='"+_request_id+"'>" + title_input + "</button2> </div>")
+		 		$("#profile-cards").append($("<article class='col s12 m5 l5 mini-post' style='margin:1em'>" +
+		 			"<header class='" + title_input  +  "'>" +
+		 			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
+		 			"<p id='number_workers' class='minipost-margin'>" + number_input + " workers</p>" +
+		 			"<p class='minipost-margin'>" + time_input + "</p>" +
+		 			// "</br>" +
+		 			// "<button class='"+ _request_id +"' id='make-done'> Done </button>" +
+		 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> "+laborer_string +"</header>" +
+		 			 " <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
+		 		));
+
+
+		}
+	}
+});
 
 
 $.ajax({
@@ -163,12 +202,12 @@ $('#job_submit').on('click', function callAPI() {
     });
 	$(this).parent().hide(400,"swing");
 
-	console.log(document.getElementById("username").innerHTML);
+	console.log(document.getElementById("username").innerText);
 
 	// stringy data from job_submit into object so can pass to ajax /CreateJobCard
 	var data = {
 	    data: JSON.stringify({
-			"username": document.getElementById("username").innerHTML,
+			"username": document.getElementById("username").innerText,
             "cardtitle": title_input,
 			"description": description_input,
 			"numberofworkers": number_input,
@@ -259,6 +298,7 @@ $('.mini-posts').on('click', 'button', function() {
 	// var number_workers = parseInt($(this).parent().find("#number_workers").html()[0])
 	var _request_id    = $(this).attr('class')
 	var _laborer_id    = $(this).parent().find(".laborer-dark")
+	var parent_parent  = $(this).parent().parent()
 	for(i=0;i<_laborer_id.length;i++)
 	{
 		list_of_ids.push(_laborer_id[i].id)
@@ -270,6 +310,7 @@ $('.mini-posts').on('click', 'button', function() {
 	// console.log("number_workers: " + number_workers)
 	console.log("_request_id: " + _request_id)
 
+	parent_parent.remove()
 
 	var data_tosend = {
 	    data: JSON.stringify({
