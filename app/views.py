@@ -314,7 +314,7 @@ def jobcard_done():
 	print("1"	)
 	print(type(_list_of_ids))
 	print(_list_of_ids)
-	
+
 	get_employer_request = models.employer_request.query.filter_by(request_id=_request_id)
 	# print("2")
 	# print(type(get_employer_request[0].request_id))
@@ -386,3 +386,14 @@ def profile_cards():
 	# return jsonify(result=jobcards)
 	return json.dumps(jobcards)
 
+@app.route('/removelaborer', methods=['POST'])
+def removelaborer():
+	data = json.loads(request.form.get('data'))
+	_lab_id = int(data['laborer_id'].encode('ascii','ignore'))
+	_request_id = int(data['request_id'].encode('ascii','ignore'))
+	x = models.fulfillment.query.filter_by(fulfillment_laborer_id=_lab_id).delete()
+	get_laborer = models.laborer.query.filter_by(laborer_id=_lab_id)
+	get_laborer[0].laborer_availability = "y"
+	db.session.commit()
+
+	return "love once more"
