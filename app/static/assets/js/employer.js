@@ -57,6 +57,7 @@ $.ajax({
 		 			// "<button class='"+ _request_id +"' id='make-done'> Done </button>" +
 		 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> "+laborer_string +"</header>" +
 		 			 " <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
+
 		 		));
 
 
@@ -90,19 +91,29 @@ $.ajax({
 				//console.log("ace venture" + data[i]["laborer_data"][j]["name"])
 
 		}
+		var modalID = 'modal_job' + String(i);
 		console.log(laborer_string)
 	 		$(".make-laborer").append("<div class='move-laborer'> <button2 id='"+_request_id+"'>" + title_input + "</button2> </div>")
 	 		$(".mini-posts").append($("<article class='mini-post '>" +
 	 			"<header class='" + title_input  +  "'>" +
-	 			"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
+	 			"<h3><a class = 'modal-trigger' href='#"+modalID+"'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
 	 			"<p id='number_workers' class='minipost-margin'>" + number_input + " workers</p>" +
 	 			"<p class='minipost-margin'>" + time_input + "</p>" +
 	 			"</br>" +
 	 			"<button class='"+ _request_id +"' id='make-done'> Done </button>" +
-	 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time>"+laborer_string +"</header>" +
-	 			 " <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
-	 		));
 
+
+	 			"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time>"+laborer_string +"</header>" +
+	 			 " <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a>" +"<div id='" + modalID + "'class = 'modal modal-fixed-footer'> <div class = 'modal-content'>" +
+				 "<h5>Job Title: "+title_input+"</h5>" +
+ 				"<p>Job Description: "+description_input+"</p><h5>Your selected Laborers</h5>"+laborer_string+
+				 "<p></br> Reviews and Verification to come! </p></div>"
+				 + "<div class='modal-footer'>"+
+				 "<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>CLOSE</a>"+
+				 "</div></div>"+ "</article>"
+
+	 		));
+$('.modal-trigger').leanModal();
 
 	}
 }
@@ -224,20 +235,40 @@ $('#job_submit').on('click', function callAPI() {
     // contentType: 'application/json;charset=UTF-8',
 	   success: function(response){
 			console.log(response)
+			var modalID = 'modal_job' + String(response);
+			var laborer_string = "NA"
 			$(".make-laborer").append("<div class='move-laborer'> <button2 id='"+response+"'>" + title_input + "</button2> </div>")
 
 			$(".mini-posts").append($("<article class='mini-post '>" +
 				"<header class='" + title_input  +  "'>" +
-					"<h3><a href='#'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
+					"<h3><a class = 'modal-trigger' href='#"+modalID+"'>" + title_input + "</a></h3>" + "<p class='minipost-margin'>" + description_input + "</p>" +
 					"<p id='number_workers' class='minipost-margin'>" + number_input + " workers</p>" +
 					"<p class='minipost-margin'>" + time_input + "</p>" +
 					"</br>" +
 					"<button class='"+ response +"' id='make-done'> Done </button>" +
 					"<time class='published date-margin' datetime='2015-10-20'>October 20, 2015</time> </header>" +
 
-				" <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a> </article>"
+				" <a href='#' class='image'><img src= '/static/images/pic04.jpg' alt='' /></a>"+ "<div id='" + modalID + "'class = 'modal modal-fixed-footer'> <div class = 'modal-content'>" +
+				"<h5>Job Title: "+title_input+"</h5>" +
+				"<p>Job Description: "+description_input+"</p><h5 class='lovely'>Your selected Laborers</h5>"+laborer_string+
+				"<p> </br>Reviews and Verification to come! </p></div>"
+				+ "<div class='modal-footer'>"+
+				"<a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>CLOSE</a>"+
+				"</div></div>"+ "</article>"
+
+
+	// 			"<div id='modal1' class='modal'>" +
+  //   "<div class='modal-content'>" + "
+  //     <h4>Modal Header</h4>"+"
+  //     <p>A bunch of text</p>"+"
+  //   </div>"+"
+  //   <div class='modal-footer'>"+"
+  //     <a href='#!' class='modal-action modal-close waves-effect waves-green btn-flat'>Agree</a>"+"
+  //   </div>"+"
+  // </div>"
 			));
-	    } 
+$('.modal-trigger').leanModal();
+	    }
 	});
 });
 
@@ -254,11 +285,13 @@ $('#card-right').on('click', 'button2', function() {
 	var req_id = $(this)[0].id
 	var _put = $(this).parent().parent()
 	var to_append = $(this).html();
+	var wtf = $(this).parent().parent().find(".card-add-name")[0]
 
 	console.log("lab id " + lab_id)
 	console.log("req id " + req_id)
 
 	var lab_name = $(this).parent().parent().find(".card-add-name")
+	console.log(to_append)
 	var parent_parent = $(this).parent().parent()
 
 	var data_tosend = {
@@ -282,7 +315,10 @@ $('#card-right').on('click', 'button2', function() {
 				lab_name = lab_name.addClass("laborer-dark")
 				lab_name = lab_name.removeClass("card-add-name")
 
+				var appendit = "."+to_append
 				lab_name.appendTo("."+to_append)
+				// lab_name.appendTo($(" ' " + appendit + " #laborers_modal_job ' "))
+				lab_name.appendTo($("." + to_append + " .modal-content"))
 	    	} else {
 	    		alert("Jobcard already full")
 	    	}
@@ -293,7 +329,7 @@ $('#card-right').on('click', 'button2', function() {
 });
 
 $('.mini-posts').on('click', 'button', function() {
-	alert("button clicked");
+
 	var list_of_ids = []
 	// var number_workers = parseInt($(this).parent().find("#number_workers").html()[0])
 	var _request_id    = $(this).attr('class')
