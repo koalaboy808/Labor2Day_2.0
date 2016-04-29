@@ -86,7 +86,7 @@ $.ajax({
 			var laborer_string = ""
 			for(j=0;j<data[i]["laborer_data"].length;j++)
 			{
-				laborer_string +=  "<h5 class='laborer-dark' id = '"+data[i]["laborer_data"][j]["id"]+"' style='padding-top:1em'>" + data[i]["laborer_data"][j]["name"] + "</h5>"
+				laborer_string +=  "<div class='row ' style='padding-bottom:5px'>" + "<div > <a href='#' id='cancel-laborer' class='btn-floating red lighten-1'><i class='material-icons'>delete_forever</i></a> </div> <h5 style='margin-top:17px' class='laborer-dark' id = '"+data[i]["laborer_data"][j]["id"]+"' style='padding-top:1em'>" + data[i]["laborer_data"][j]["name"] + "</h5>" + "</div>"
 				//console.log("ace venture" + data[i]["laborer_data"][j]["name"])
 
 		}
@@ -279,10 +279,16 @@ $('#card-right').on('click', 'button2', function() {
 	    		console.log("love")
 	    		parent_parent.remove()
 
-				lab_name = lab_name.addClass("laborer-dark")
-				lab_name = lab_name.removeClass("card-add-name")
+	    		inner_lab = lab_name.html()
 
-				lab_name.appendTo("."+to_append)
+				// lab_name = lab_name.addClass("laborer-dark")
+				// lab_name = lab_name.removeClass("card-add-name")
+				lab_name = "<div id='cancel-laborer' class='row' style='padding-bottom:5px'>" + "<div > <a class='btn-floating red lighten-1 cancel-laborer'><i class='material-icons'>delete_forever</i></a> </div> <h5 style='margin-top:17px' class='laborer-dark' id = '"+lab_id+"' style='padding-top:1em'>" + inner_lab + "</h5>" + "</div>"
+				// console.log(lab_name.html())
+				// console.log("lab_name: " + JSON.stringify(lab_name, null, 4))
+				// lab_name = "<div class='row' style='padding-bottom:5px'>" + "<div> <a class='btn-floating red lighten-1'><i class='material-icons'>delete_forever</i></a> </div>" + lab_name  + "</div>"
+				// lab_name.appendTo("."+to_append)
+				$("."+to_append).append(lab_name)
 	    	} else {
 	    		alert("Jobcard already full")
 	    	}
@@ -326,5 +332,11 @@ $('.mini-posts').on('click', 'button', function() {
 	    success: function(response){
 	    	console.log(response)
 		}
+	});
+});
+
+$(document).ready(function() {
+	$('#cancel-laborer').on( "click", function() {
+		alert('bello')
 	});
 });
