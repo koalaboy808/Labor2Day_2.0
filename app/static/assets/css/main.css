@@ -3619,6 +3619,13 @@ input[type="button2"],button2,.button2 {
     /*width:100%*/
 }
 
+.header-top {
+	top: 0;
+    position: absolute;
+    right: 0;
+    padding-right: 3em;
+}
+
 .header-info {
 	bottom: 0;
     position: absolute;
