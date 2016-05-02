@@ -54,11 +54,3 @@ class laborer(db.Model):
     laborer_phone_num = db.Column(db.Integer)
     laborer_availability = db.Column(db.String(50))
     laborer_skill = db.Column(db.String(120))
-
-# class skills(db.model):
-#     skill_id = db.Column(db.Integer, primary_key=True)
-#     skill_name = db.Column(db.String(120))
-#     lab_id = db.Column(db.Integer, db.ForeignKey('laborer.laborer_id'))
-
-    # def __repr__():
-    #     return request_title

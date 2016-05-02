@@ -1,11 +1,6 @@
 @import url(font-awesome.min.css);
 @import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
 
-/*
-	Future Imperfect by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 /* Reset */
 
@@ -56,18 +51,7 @@
 		box-sizing: border-box;
 	}
 
-/* Card Margin for buttons to be apart*/
-/*#content{
-	margin-left: 1em;
-	margin-right: 1em;
-    height: 98%;
-}*/
 
-/*#right {
-
-    height: 100%;
-    overflow: scroll;
-}*/
 
 .job-margin{
 	margin-bottom: 1.7em;
@@ -88,69 +72,6 @@ height: 500px;
 overflow: scroll;
 
 }
-
-/*filter*/
-
-/*#filters {
-	margin:1%;
-	padding:0;
-	list-style:none;
-}
-
-	#filters li {
-		float:left;
-	}
-
-	#filters li span {
-		display: block;
-		padding:5px 20px;
-		text-decoration:none;
-		color:#666;
-		cursor: pointer;
-	}
-
-	#filters li span.active {
-		background: #e95a44;
-		color:#fff;
-	}
-
-	.container {
-	position: relative;
-	width: inherit;
-	margin: 0 auto;
-	-webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease;
-}
-
-.container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
-
-.clearfix:before,
-.clearfix:after,
-.row:before,
-.row:after {
-  content: '\0020';
-  display: block;
-  overflow: hidden;
-  visibility: hidden;
-  width: 0;
-  height: 0; }
-.row:after,
-.clearfix:after {
-  clear: both; }
-.row,
-.clearfix {
-  zoom: 1; }
-
-.clear {
-  clear: both;
-  display: block;
-  overflow: hidden;
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}*/
 
 
 /* Grid */
